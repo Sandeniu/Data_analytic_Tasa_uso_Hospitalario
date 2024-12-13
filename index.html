@@ -3,105 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
     <title>Data-Analytic</title>
-    <style>
-          /*  font-family: 'Montserrat', sans-serif; */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-        /* Estilo general para el fondo */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            line-height: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: .85rem;
-            overflow: hidden;
-        }
-
-        /* Fondo semitransparente */
-        #introOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        /* Caja central */
-        #introBox {
-            background-color: #fff;
-            padding: 10px 0px;
-            border-radius: 8px;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.5s ease-out;
-        }
-         /*Estilo de div contenedor de contenido*/
-         #contenido, #introBox{
-            width: 80%;
-            /* margin: 0 auto; */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Animación de entrada */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        /* Estilo del botón */
-        #closeIntroBtn {
-            background-color: #4CAF50; /* Verde juvenil */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        #closeIntroBtn:hover {
-            background-color: #45a049;
-        }
-        a{
-            text-decoration: none;
-            color:#fff
-        }
-        /* Contenido principal oculto inicialmente */
-        #mainContent {
-            display: none;
-            padding: 20px;
-        }
-        p{
-            text-align: justify;
-            margin: 3px;
-        }
-        
-        /*Estilo de Lista*/
-        ul{
-            padding-left: 1.5rem; 
-        }
-        li {
-            text-align: justify;
-            padding-left: .5rem;
-        }
-
-    </style>
 </head>
+
 <body>
 
 <!-- Recuadro introductorio -->
@@ -127,58 +32,13 @@
 
             <p>Haz clic en el botón para visualizar la muestra de este tablero</p>
             <button id="closeIntroBtn">
-                <a href="./informe_LRS_2024___ULTIMOOOO.pdf" class="MiPopup">CERRAR</a>
+                <a href="./informe_LRS_2024___ULTIMOOOO.pdf" class="MiPopup" id="MiPopup">CERRAR</a>
             </button>
         </div>
     </div>
 </div>
 
-<script>
-    // Función para abrir una ventana emergente y mostrar un archivo PDF
-    function openPdfInPopup(url) {
-        const popupWidth = 640;
-        const popupHeight = 480;
-
-        // Cálculo para centrar la ventana emergente
-        const left = (window.innerWidth - popupWidth) / 2 + window.screenX;
-        const top = (window.innerHeight - popupHeight) / 2 + window.screenY;
-
-        // Crear la ventana emergente con el visor de PDF
-        const popup = window.open(
-            '', // Título vacío
-            '', // Usamos un nombre vacío para que no se sobreescriba ninguna ventana existente
-            `width=${popupWidth},height=${popupHeight},top=${top},left=${left},scrollbars=yes,resizable=yes`
-        );
-
-        // Validar que la ventana emergente fue creada exitosamente
-        if (popup) {
-            // Crear un iframe para evitar problemas de interpretación literal de HTML
-            popup.document.write(`
-                <html>
-                    <head>
-                        <title>Visor PDF</title>
-                    </head>
-                    <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100%; background-color: #f0f0f0;">
-                        <iframe src="${url}" type="application/pdf" width="100%" height="100%" style="border: none;"></iframe>
-                    </body>
-                </html>
-            `);
-            popup.document.close(); // Asegurarse de que el contenido se renderice
-        } else {
-            alert("No se pudo abrir la ventana emergente. Verifica que los popups no estén bloqueados.");
-        }
-    }
-
-    // Seleccionar el botón y su enlace interno
-    const button = document.getElementById('closeIntroBtn');
-    const link = button.querySelector('a.MiPopup');
-
-    // Asignar evento de click al botón
-    button.addEventListener('click', function (event) {
-        event.preventDefault(); // Evitar cualquier comportamiento estándar del enlace
-        openPdfInPopup(link.href); // Abrir el archivo PDF en el visor de la ventana emergente
-    });
-</script>
+<script src="./script.js"></script>
 
 </body>
 </html>
